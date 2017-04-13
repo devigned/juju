@@ -79,7 +79,7 @@ func AuthToken(cloud environs.CloudSpec, sender autorest.Sender) (*azure.Service
 	appPassword := credAttrs[credAttrAppPassword]
 	client := subscriptions.Client{subscriptions.NewWithBaseURI(cloud.Endpoint)}
 	client.Sender = sender
-	oauthConfig, _, err := azureauth.OAuthConfig(client, cloud.Endpoint, subscriptionId)
+	oauthConfig, _, err := azureauth.OAuthConfig(client, "https://management.core.windows.net/", subscriptionId)
 	if err != nil {
 		return nil, errors.Trace(err)
 	}
